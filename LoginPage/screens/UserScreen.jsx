@@ -49,10 +49,32 @@ async function getData()
   });
 }
 
+const handleBackPress=()=>{
+  Alert.alert(
+    'Exit APP',
+    'Are you sure you want to exit?',
+    [
+      {
+        text:'Cancel',
+        onPress:()=>null,
+        style:'cancel'
+      },
+      {
+        text:'Exit',
+        onPress:()=>BackHandler.exitApp(),
+      },
+    ]);
+    return true;
+}
+
 
 useEffect(()=>{
   getData();
- 
+  BackHandler.addEventListener('hardwareBackPress',handleBackPress)
+  return()=>{
+  BackHandler.removeEventListener('hardwareBackPress',handleBackPress)
+
+  }
 },[]);
 
 
@@ -62,7 +84,6 @@ function signOut()
   AsyncStorage.setItem("token","");
   navigation.navigate("Login");
 }
-
 
 
 

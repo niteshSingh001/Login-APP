@@ -24,7 +24,13 @@ const LoginScreen = (props) => {
       {
         Alert.alert("Logged in Succesfull!!");
         AsyncStorage.setItem("token",res.data.data);
+        AsyncStorage.setItem("isLoggedIn",JSON.stringify(true));
+        setEmail("");
+        setPassword("");
         navigation.navigate("User");
+      }
+      else{
+        Alert.alert("User doesn't Exist");
       }
     });
   }
@@ -40,10 +46,10 @@ const LoginScreen = (props) => {
       <Text style={styles.text_header}>Login!!</Text>
       </View>
       <View style={styles.action}>
-        <TextInput placeholder='Email' style={styles.textInput}  onChange={e => setEmail(e.nativeEvent.text)}/>
+        <TextInput value={email} placeholder='Email' style={styles.textInput}  onChange={e => setEmail(e.nativeEvent.text)}/>
       </View>
       <View style={styles.action}>
-        <TextInput placeholder='Password' style={styles.textInput} onChange={e => setPassword(e.nativeEvent.text)} />
+        <TextInput value={password}   placeholder='Password' style={styles.textInput} onChange={e => setPassword(e.nativeEvent.text)} />
       </View>
       <View style={styles.button}>
         <TouchableOpacity style={styles.inBut} onPress={()=>handleSubmit()}>

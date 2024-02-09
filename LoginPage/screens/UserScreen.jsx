@@ -54,6 +54,27 @@ useEffect(()=>{
   getData();
  
 },[]);
+
+
+function signOut()
+{
+  AsyncStorage.setItem("isLoggedIn","");
+  AsyncStorage.setItem("token","");
+  navigation.navigate("Login");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
   return(
     <ScrollView showsVerticalScrollIndicator={false}>
      <View>
@@ -99,8 +120,8 @@ useEffect(()=>{
            
           </View>
           <View style={styles.button}>
-        <TouchableOpacity style={styles.inBut} onPress={()=>{navigation.navigate("Login")}}>
-          <View><Text style={styles.textSign}>Logout</Text></View>
+        <TouchableOpacity style={styles.inBut} onPress={()=>signOut()}>
+          <View><Text style={styles.textSign}>Sign Out</Text></View>
        </TouchableOpacity>
        </View>
 

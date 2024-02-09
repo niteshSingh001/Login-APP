@@ -40,11 +40,10 @@ app.post("/register", async (req, res) => {
       mobile,
       password: encryptedPasssword,
     });
-    console.log("Error in try block");
+
     res.send({ status: "ok", data: "User Created" });
   } catch (e) {
     res.send({ status: "error", data: error });
-    console.log("Error in catch block Saving");
   }
 });
 
